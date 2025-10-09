@@ -93,3 +93,27 @@ tailwind for CSS
 pdf viewer component
 - hard coded file for now
 - get technically through, have everything working, then file selector in pdf component
+
+commited
+
+next step
+- Annotator, requirements
+  - need to draw upon the pdf viewer component
+  - simple to integrate with react (i.e., switching e.g. to VueJS or angular would have trailing costs)
+  - free
+  - vector drawing -> store traces, this is not Paint
+- options
+  - https://www.npmjs.com/package/react-konva: >500k+ downloads weekly, react integrated, Konva.js, however, works e.g. with VueJS
+  - fabric.js: more stars, single canvas (enough here), not react native, see e.g. https://www.npmjs.com/package/fabricjs-react
+  - native canvas api: probably more freedom, less dependencies, more work needed
+- chose react-konva
+
+Added options to delete and select
+- however: now navbar is needed, context of PDFViewer and Annotator are mixed
+- refactoring needed -> lunch break
+
+How to handle state well?
+- Zustand or Jotai? Redux?
+  - redux too much boilerplate
+- I want to keep it simple and add complexity where suitable
+  - useState in App.tsx

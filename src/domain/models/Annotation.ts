@@ -54,3 +54,35 @@ export function isDrawAnnotation(annotation: Annotation): annotation is DrawAnno
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   return annotation.type === 'draw';
 }
+
+// ============================================================================
+// Factory Functions
+// ============================================================================
+
+export function createDrawAnnotation(
+  params: Omit<DrawAnnotation, 'id' | 'createdAt' | 'updatedAt' | 'type'>
+): DrawAnnotation {
+  const now = new Date();
+  return {
+    ...params,
+    type: 'draw',
+    id: generateId(),
+    createdAt: now,
+    updatedAt: now,
+  };
+}
+
+// ============================================================================
+// Utility Functions
+// ============================================================================
+
+function generateId(): string {
+  return `${Date.now().toString()}-${Math.random().toString(36).substring(2, 9)}`;
+}
+
+/**
+ * Convert color to CSS rgba string
+ */
+export function colorToRgba(color: Color): string {
+  return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${color.a.toString()})`;
+}
