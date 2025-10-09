@@ -43,12 +43,14 @@ export interface DrawAnnotation extends BaseAnnotation {
   strokeWidth: number; // Normalized to page dimensions (0-1)
 }
 
-export type Annotation = DrawAnnotation
+export type Annotation = DrawAnnotation;
 
 // ============================================================================
 // Type Guards
 // ============================================================================
 
 export function isDrawAnnotation(annotation: Annotation): annotation is DrawAnnotation {
+  // FIXME: eslint error
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   return annotation.type === 'draw';
 }
