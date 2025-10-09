@@ -63,3 +63,33 @@ Setting up Claude for help
 Structure
 - hexagonal architecture, e.g. -> src/domain/models, not differentiated by entity and value object, yet
 - commit message with semantic commit message
+
+chore:
+- added linter, formater, type check
+
+test strategy
+- business logic only
+- not every conversion or type guard must be tested, here, I want to see how things fit together
+
+pdf rendering
+- requirements
+  - display pdf
+  - get page size and page number
+    - need this for the annotations
+  - free: I have no money
+  - open source: maybe not right now a need, but later on GDPR could be a topic. What if this sends out telemetry?
+  - I annotate, but not alter the pdf -> pdf stays immuted, annotation is a layer on top
+- options
+  - react-pdf? >1M downloads weekly, online demo looks simple enough, free, displays "like images" -> issue with annotation?
+  - https://www.npmjs.com/package/@pdf-viewer/react: licensed, not open-source, not free, may be interesting for production use
+  - https://www.nutrient.io/sdk/: looks very professional, costs
+- decision:
+  - react-pdf
+
+tailwind for CSS
+- atomic -> aligns with SOLID/CUPID, i.e. unix style
+- v4 different than v3, minor issues
+
+pdf viewer component
+- hard coded file for now
+- get technically through, have everything working, then file selector in pdf component
