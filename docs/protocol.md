@@ -176,7 +176,10 @@ Open points
 - [ ] text annotation
 - [ ] YAGNI, but what else would the user desire? PDF editing to include annotations? Comments? Shared usage?
 
-
+Time spent
+- initial reading of the use case, a few questions pondered
+- about eights hours in total development time
+- two deep dive working periods separated by 1,5 days
 
 
 ---
