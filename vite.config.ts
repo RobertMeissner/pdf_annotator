@@ -14,4 +14,13 @@ export default defineConfig({
       '@presentation': path.resolve(__dirname, './src/presentation'),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://pdf.challenge.taxbier.de',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 });

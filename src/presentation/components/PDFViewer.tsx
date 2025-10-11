@@ -12,7 +12,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 interface PDFViewerProps {
-  fileUrl: string;
+  file: File;
   onDocumentLoad: (numPages: number) => void;
   currentPage: number;
   totalPages: number;
@@ -25,7 +25,7 @@ interface PDFViewerProps {
 }
 
 export function PDFViewer({
-  fileUrl,
+  file,
   onDocumentLoad,
   currentPage,
   totalPages,
@@ -82,7 +82,7 @@ export function PDFViewer({
       <div className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm flex justify-center p-4">
         <div className="relative inline-block">
           <div className="relative z-0">
-            <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
+            <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
               <Page pageNumber={currentPage} onLoadSuccess={onPageLoadSuccess} />
             </Document>
           </div>

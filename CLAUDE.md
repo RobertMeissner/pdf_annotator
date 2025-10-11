@@ -220,9 +220,9 @@ import './Component.css';
 - [ ] Set up DI container
 
 ### Phase 2: Core Features (Day 1-2, Hours 9-32)
-- [ ] PDF rendering with react-pdf
-- [ ] Canvas overlay with Konva
-- [ ] Drawing tool implementation
+- [x] PDF rendering with react-pdf
+- [x] Canvas overlay with Konva
+- [x] Drawing tool implementation
 - [ ] Color picker component
 - [ ] Stroke width control
 - [ ] Save annotations to repository

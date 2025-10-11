@@ -117,3 +117,46 @@ How to handle state well?
   - redux too much boilerplate
 - I want to keep it simple and add complexity where suitable
   - useState in App.tsx
+
+refactored without Claude and commited
+
+UX not ideal, e.g., 
+- if cursor leaves PDF, it "forgets" whether mouse is still clicked, one can draw indefinitely
+- drawing space unclear
+- "Select" confuses
+
+decision for technical puncture first
+- step 3, pdf upload
+- token is not stored, will always be pulled
+  - could be cached/persisted for 30min
+
+----
+
+break, continued on 20251011
+- "upload-pdf" not semantic. Better, e.g. "upload/pdf", i.e., verb/uri
+- API: response schema not defined. Unclear whether file_id or fileId or ? is being returned -> bad practice
+- refactored pdf loading into single file handling
+- added di container for composing the use case service
+
+good UX requires transpacency and user-readable responses and notifications
+- react-toastify: simple, free, react native
+- sonner: slightly less popular, seems more modern, typescript first
+
+upload is working, notifications are appearing
+- mostly happy case
+
+refactoring
+
+
+
+---
+
+Questions to discuss
+- PO focus
+  - upload annotated or raw pdf's? Store annotations separately?
+  - Do customers want to resume annotating? Does it have to be reproducible, e.g. for audit trails?
+    - this could require an event messaging system, i.e., event store from which annotations are redone
+  - Undo/Redo functionality?
+- Tech focus
+  - API endpoint unclear -> intentionally bad? 
+  - API "upload-pdf" endpoint not semantic, what if we also want to upload jpg (aka Fax scans)

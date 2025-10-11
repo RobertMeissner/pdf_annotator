@@ -124,7 +124,7 @@ export function AnnotationLayer({
 
   return (
     <div
-      className={`absolute top-0 left-0 pointer-events-auto ${cursorStyle}`}
+      className={`absolute top-0 left-0 pointer-events-auto ${cursorStyle} border-2 border-blue-400 border-dashed border-opacity-30`}
       style={{ width, height }}
     >
       <Stage
