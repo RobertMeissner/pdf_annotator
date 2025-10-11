@@ -158,13 +158,30 @@ added tests, test driven in PoC development often difficult, as tests do change 
 monitoring, logging
 - often cost-intensive solutions
 - event streaming for replayability, debugging needed
-- sentry
+- sentry as a first option, free tier rather generous
+
+observability
+- +1 for event bus
+
+first github action
+- run tests and linters
+- currently, trunk-based only development
+
+documentation
+- README.me updates
+
+Open points
+- [ ] firebase authentication: It is now three hours to deadly. I could crunch something together, but auth has many pitfalls and I would want to understand this.
+- [ ] see "Questions to discuss" below
+- [ ] text annotation
+- [ ] YAGNI, but what else would the user desire? PDF editing to include annotations? Comments? Shared usage?
+
 
 
 
 ---
 
-Questions to discuss
+## Questions to discuss
 - PO focus
   - upload annotated or raw pdf's? Store annotations separately?
   - Do customers want to resume annotating? Does it have to be reproducible, e.g. for audit trails?
