@@ -145,7 +145,20 @@ good UX requires transpacency and user-readable responses and notifications
 upload is working, notifications are appearing
 - mostly happy case
 
-refactoring
+refactoring UI
+
+commited
+
+added tests, test driven in PoC development often difficult, as tests do change rapidly
+- only happy case and obvious bad cases
+- no edge cases
+  - e.g. bad pdf file
+  - what if values are outside their range, e.g., point coordinates?
+
+monitoring, logging
+- often cost-intensive solutions
+- event streaming for replayability, debugging needed
+- sentry
 
 
 
@@ -157,6 +170,7 @@ Questions to discuss
   - Do customers want to resume annotating? Does it have to be reproducible, e.g. for audit trails?
     - this could require an event messaging system, i.e., event store from which annotations are redone
   - Undo/Redo functionality?
+  - local running or on cloud?
 - Tech focus
   - API endpoint unclear -> intentionally bad? 
   - API "upload-pdf" endpoint not semantic, what if we also want to upload jpg (aka Fax scans)
