@@ -11,6 +11,7 @@ import {
   isDrawAnnotation,
   type Color,
   type Point,
+  normalizePoint,
 } from './Annotation';
 
 describe('Annotation Domain Model', () => {
@@ -101,6 +102,21 @@ describe('Annotation Domain Model', () => {
       });
 
       expect(isDrawAnnotation(annotation)).toBe(true);
+    });
+  });
+
+  describe('normalizePoint', () => {
+    it('should clamp points to 0 if negative', () => {
+      const point: Point = { x: -300, y: -300 };
+      expect(normalizePoint(point, 100, 100)).toEqual({ x: 0, y: 0 });
+    });
+    it('should clamp points to 1 if too large', () => {
+      const point: Point = { x: 150, y: 150 };
+      expect(normalizePoint(point, 100, 100)).toEqual({ x: 1, y: 1 });
+    });
+    it('should clamp coordinates independently', () => {
+      const point: Point = { x: -100, y: 150 };
+      expect(normalizePoint(point, 100, 100)).toEqual({ x: 0, y: 1 });
     });
   });
 });

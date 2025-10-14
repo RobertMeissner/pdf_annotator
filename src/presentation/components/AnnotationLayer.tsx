@@ -9,7 +9,12 @@ import type { JSX } from 'react';
 import { useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import Konva from 'konva';
-import type { DrawAnnotation, Point, Color } from '@domain/models/Annotation';
+import {
+  type DrawAnnotation,
+  type Point,
+  type Color,
+  normalizePoint,
+} from '@domain/models/Annotation';
 import { createDrawAnnotation, colorToRgba } from '@domain/models/Annotation';
 
 interface AnnotationLayerProps {
@@ -61,13 +66,7 @@ export function AnnotationLayer({
     const pos = stage.getPointerPosition();
     if (!pos) return;
 
-    // Normalize coordinates to 0-1
-    const normalizedPoint: Point = {
-      x: pos.x / width,
-      y: pos.y / height,
-    };
-
-    setCurrentLine([normalizedPoint]);
+    setCurrentLine([normalizePoint(pos, width, height)]);
   }
 
   function handleMouseMove(): void {
@@ -79,13 +78,7 @@ export function AnnotationLayer({
     const pos = stage.getPointerPosition();
     if (!pos) return;
 
-    // Normalize coordinates to 0-1
-    const normalizedPoint: Point = {
-      x: pos.x / width,
-      y: pos.y / height,
-    };
-
-    setCurrentLine((prev) => [...prev, normalizedPoint]);
+    setCurrentLine((prev) => [...prev, normalizePoint(pos, width, height)]);
   }
 
   function handleMouseUp(): void {
