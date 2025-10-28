@@ -16,17 +16,12 @@ export class TaxbierUploadService implements IPDFUploadService {
   async getToken(email: string): Promise<string> {
     const url = `${this.baseUrl}/provide-token?email=${encodeURIComponent(email)}`;
     const options = { method: 'POST' };
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status.toString()}: ${response.statusText}`);
-      }
-      const data = (await response.json()) as TokenResponse;
-      return data.access_token;
-    } catch (error) {
-      console.error('getToken: ', error);
-      throw error;
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status.toString()}: ${response.statusText}`);
     }
+    const data = (await response.json()) as TokenResponse;
+    return data.access_token;
   }
 
   async uploadPDF(file: File, token: string): Promise<UploadResult> {

@@ -5,8 +5,6 @@
  * Uses discriminated union pattern for type safety.
  * Entity, will change often
  */
-import type Konva from 'konva';
-
 export type AnnotationType = 'draw' | 'text' | 'highlight';
 
 export interface Point {
@@ -85,7 +83,7 @@ export function colorToRgba(color: Color): string {
   return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${color.a.toString()})`;
 }
 
-export function normalizePoint(pos: Konva.Vector2d, width: number, height: number): Point {
+export function normalizePoint(pos: Point, width: number, height: number): Point {
   const clampedPosition: Point = {
     x: pos.x / width,
     y: pos.y / height,

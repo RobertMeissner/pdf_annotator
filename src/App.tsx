@@ -74,7 +74,7 @@ function App(): JSX.Element {
 
   function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>): void {
     const file = e.target.files?.[0];
-    if (file && file.type === 'application/pdf') {
+    if (file?.type === 'application/pdf') {
       setPdfFile(file);
       setFileName(file.name);
       // reset annotations when loading new file
