@@ -6,6 +6,15 @@ export default defineConfig({
     globals: true,
     environment: 'node', // Use 'jsdom' if testing React components
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+    coverage: {
+      exclude: [
+        'postcss.config.js',
+        'tailwind.config.js',
+        'eslint.config.js',
+        'vite.config.ts',
+        'vitest.config.ts',
+      ],
+    },
   },
   resolve: {
     alias: {

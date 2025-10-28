@@ -5,7 +5,7 @@
  * Stores annotations with normalized coordinates (0-1 relative to page).
  */
 
-import type { JSX } from 'react';
+import { type JSX, memo } from 'react';
 import { useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import Konva from 'konva';
@@ -28,7 +28,7 @@ interface AnnotationLayerProps {
   onAnnotationDelete?: (annotationId: string) => void;
 }
 
-export function AnnotationLayer({
+export const AnnotationLayer = memo(function AnnotationLayer({
   width,
   height,
   documentId,
@@ -163,4 +163,4 @@ export function AnnotationLayer({
       </Stage>
     </div>
   );
-}
+});

@@ -83,7 +83,11 @@ export function PDFViewer({
         <div className="relative inline-block">
           <div className="relative z-0">
             <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
-              <Page pageNumber={currentPage} onLoadSuccess={onPageLoadSuccess} />
+              <Page
+                pageNumber={currentPage}
+                onLoadSuccess={onPageLoadSuccess}
+                renderTextLayer={false}
+              />
             </Document>
           </div>
           {pageWidth > 0 && pageHeight > 0 && (
