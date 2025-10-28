@@ -1,10 +1,11 @@
-import React, { type JSX, useState } from 'react';
+import React, { type JSX, useCallback, useMemo, useState } from 'react';
 import { PDFViewer } from '@presentation/components/PDFViewer';
 import type { DrawAnnotation } from '@domain/models/Annotation.ts';
 import type { DrawingMode } from '@presentation/types.ts';
 import { AnnotationLayer } from '@presentation/components/AnnotationLayer.tsx';
 import { Container } from '@infrastructure/di/Container.ts';
 import { toast, Toaster } from 'sonner';
+import { useStrictMode } from 'react-konva';
 
 function App(): JSX.Element {
   // state
@@ -21,6 +22,9 @@ function App(): JSX.Element {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string>('');
 
+  // keeps Konva nodes and react state in sync
+  useStrictMode(true);
+
   // handlers
   function handleDocumentLoad(totalPages: number): void {
     setNumPages(totalPages);
@@ -30,9 +34,9 @@ function App(): JSX.Element {
     setCurrentPage(page);
   }
 
-  function handleAnnotationCreate(annotation: DrawAnnotation): void {
+  const handleAnnotationCreate = useCallback((annotation: DrawAnnotation): void => {
     setAllAnnotations((prev) => [...prev, annotation]);
-  }
+  }, []);
 
   function handleAnnotationDelete(annotationId: string): void {
     setAllAnnotations((prev) => prev.filter((a) => a.id !== annotationId));
@@ -87,7 +91,10 @@ function App(): JSX.Element {
   }
 
   // Filter annotations for current page
-  const currentPageAnnotations = allAnnotations.filter((a) => a.pageNumber === currentPage);
+  const currentPageAnnotations = useMemo(
+    () => allAnnotations.filter((a) => a.pageNumber === currentPage),
+    [allAnnotations, currentPage]
+  );
 
   return (
     <div className="flex flex-col items-center p-4 min-h-screen bg-gray-50">

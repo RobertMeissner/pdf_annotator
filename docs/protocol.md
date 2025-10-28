@@ -194,3 +194,8 @@ Time spent
 - Tech focus
   - API endpoint unclear -> intentionally bad? 
   - API "upload-pdf" endpoint not semantic, what if we also want to upload jpg (aka Fax scans)
+
+## 20251028 Preparing interview
+
+Coverage
+- App.tsx not covered at all -> integration test?
